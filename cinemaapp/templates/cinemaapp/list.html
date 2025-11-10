@@ -1,0 +1,13 @@
+<html>
+    <body>
+        <ul>
+            {% for movie in movies %}
+                <li>{{movie.title}}</li>
+                <a href="{% url 'movie_edit' movie.pk %}">Edit</a>
+                <a href="{% url 'movie_delete' movie.pk %}">Delete</a>
+            {% empty %}
+                There are no movies
+            {% endfor %}
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,9 @@
+<html>
+<body>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Send</button>
+</form>
+</body>
+</html>
