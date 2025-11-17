@@ -7,6 +7,15 @@
     <a href="{% url 'tema1' %}">Activar tema 1</a>
     <a href="{% url 'tema2' %}">Activar tema 2</a>
     <a href="{% url 'borracookie' %}">Desactivar tema</a>
+    {% if not user.is_authenticated %}
+    <a href="{% url 'login' %}">Log in</a>
+    {% else %}
+    <p>Hello, {{ user.username }}</p>
+    <form method='post' action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type='submit'>Log out</button>
+    </form>
+    {% endif %}
     </header>
     {% if tema == 'tema1' %}
     <body style='background-color: pink; color: green'>

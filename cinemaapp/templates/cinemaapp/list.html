@@ -4,6 +4,9 @@
         <ul>
             {% for movie in movies %}
                 <li>{{movie.title}}</li>
+                {% if user.groups.all.0.name == 'Worker' %}
+                <a href="{% url 'movie_detail' movie.pk %}">Details</a>
+                {% endif %}
                 <a href="{% url 'movie_edit' movie.pk %}">Edit</a>
                 <a href="{% url 'movie_delete' movie.pk %}">Delete</a>
             {% empty %}
