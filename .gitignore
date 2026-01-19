@@ -3,7 +3,8 @@ __pycache__/
 *.py[codz]
 *$py.class
 .idea
-
+posters/
+testfiles/
 # C extensions
 *.so
 

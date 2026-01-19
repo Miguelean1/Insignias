@@ -10,7 +10,7 @@ class Actor(models.Model):
 
 class Movie(models.Model):
     title = models.CharField(max_length=100)
-    synopsis = models.TextField(max_length=1000)
+    synopsis = models.TextField(max_length=1000, blank=True)
     GENRES = [
         ('AC', 'Action'),
         ('DR', 'Drama'),
@@ -19,16 +19,17 @@ class Movie(models.Model):
         ('HO', 'Horror')
     ]
     genre = models.CharField(max_length=2, choices=GENRES)
-    director = models.CharField(max_length=100)
+    director = models.CharField(max_length=100, blank=True)
     release_year = models.IntegerField(validators=[MinValueValidator(1900)])
     duration = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(500)])
     release_date = models.DateField()
     announcement_date = models.DateField()
-    has_subtitles = models.BooleanField()
+    has_subtitles = models.BooleanField(null=True, blank=True)
     subtitles_language = models.CharField(blank=True)
     imdb = models.URLField(blank=True)
     rating = models.DecimalField(max_digits=3, decimal_places=1, validators=[MinValueValidator(0.0), MaxValueValidator(10.0)], blank=True, null=True)
     actors = models.ManyToManyField(Actor, blank=True)
+    poster = models.FileField(upload_to='posters', blank=True)
 
     def clean(self):
         super().clean()
